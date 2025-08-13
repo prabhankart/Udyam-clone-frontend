@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { UserIcon, CardIcon, CheckboxIcon } from './Icons';
-import ProgressTracker from './ProgressTracker'; // 1. IMPORT THE TRACKER
+import ProgressTracker from './ProgressTracker';
 
 const RegistrationForm = () => {
     const [step, setStep] = useState(1);
@@ -62,7 +62,9 @@ const RegistrationForm = () => {
         setIsLoading(true);
         setServerMessage({ type: '', content: '' });
         try {
-            const API_URL = 'http://localhost:5001/api/register/submit';
+            // *** UPDATED API URL ***
+            const API_URL = 'https://udyam-clone-backend.onrender.com/api/register/submit';
+            
             const response = await axios.post(API_URL, {
                 aadhaarNumber: formData.aadhaarNumber,
                 nameAsPerAadhaar: formData.nameAsPerAadhaar,
@@ -89,7 +91,6 @@ const RegistrationForm = () => {
         <div className="w-full max-w-5xl mx-auto">
             <div className="bg-white p-6 md:p-8 border-t-4 border-blue-600 shadow-xl rounded-lg min-h-[550px]">
                 
-                {/* 2. ADD THE COMPONENT HERE */}
                 <ProgressTracker currentStep={step} />
 
                 {/* Step 1: Aadhaar Details */}
